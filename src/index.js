@@ -6,11 +6,11 @@ async function findUsersSortedByAgeAndName() {
     const users = await prisma.user.findMany({
       orderBy: [
         { age: "asc" },
-        { name: { sort: "asc", mode: "insensitive" } }, // case-insensitive alphabetical
+        { name: "asc" }, // case-sensitive alphabetical sort
       ],
     });
 
-    return users; // returns [] if no users
+    return users;
   } catch (error) {
     console.error("Error fetching users:", error);
     throw error;
